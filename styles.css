@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    background-color: #ededed;
+}
+
+.main-container{
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    /* Importante colocar el Overlow */
+    overflow: hidden;
+    position: relative;
+
+    /* Colocamos que el estilo de la animacion va a estar en 3D */
+    transform-style: preserve-3d;
+}
+
+.card__front, .card__back{
+    /* Ocultamos la parte de atras de cada card */
+    backface-visibility: hidden;
+
+    /* Definimos cada caja con position absolute */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Colocamos que el estilo de la animacion va a estar en 3D */
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+/* Card Front */
+
+.card__front-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capa{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.29);
+}
+
+.card__front-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    color: #fff;
+    font-size: 2.5em;
+}
+
+/* Card Back */
+
+.card__back{
+    /* Giramos nuestra card 180deg en Y para que se oculte */
+    transform: perspective(600px) rotateY(180deg); 
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__back-title{
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: slateblue;
+    font-weight: 600;
+}
+
+.card__back-button{
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: slateblue;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    transition: 1s transform;
+}
+
+.card__back-button:hover{
+    transform: translateY(-5px);
+}
+
+
+/* Cuando card este en hover su hijo directo card__back se va a voltear y el front se va a ocultar */
+
+.card:hover > .card__back{
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.card:hover > .card__front{
+    transform: perspective(600px) rotateY(180deg);
+}
